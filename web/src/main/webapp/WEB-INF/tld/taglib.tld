@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/JSP/TagLiblaryDescriptor"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/ web-
+		jsptaglibrary_2_0.xsd"
+	version="2.0"><!-- дескриптор библиотеки тегов -->
+	<tlib-version>1.0 </tlib-version>
+	<short-name>mytag </short-name>
+	<uri>/WEB-INF/tld/taglib.tld</uri>
+	<tag>
+		<name>jsparr</name>
+		<tag-class>by.htp.liblary.jsp_tags.JSPShowUsersTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>jspUserBean</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>jsparr2</name>
+		<tag-class>by.htp.liblary.jsp_tags.JSPShowBookTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>jspBookBean</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	</taglib>
