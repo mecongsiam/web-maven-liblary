@@ -16,7 +16,7 @@ import by.htp.liblary.service.exception.ServiceException;
 public final class UserService {
 
 
-	public final static User checkLogin(String login, String password) throws ServiceException {
+	public  static User checkLogin(String login, String password) throws ServiceException {
 
 		User result = null;
 		if (!Validator.loginValidator(login, password)) {
