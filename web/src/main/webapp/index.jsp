@@ -5,11 +5,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Library</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Optional Bootstrap theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 <fmt:setLocale value="${sessionScope.local }" />
 <fmt:setBundle basename="localization.local" var="loc" />
 <fmt:message bundle="${loc}" key="local.message.password"
@@ -27,6 +33,16 @@
 </head>
 
 <body>
+<div class="container">
+	<div class="row">
+		<div class=""col-lg-3 col-md-3 col-sm-3></div>
+		<div class=""col-lg-3 col-md-3 col-sm-3></div>
+		<div class=""col-lg-3 col-md-3 col-sm-3></div>
+	</div>
+</div>
+<center>
+
+
 	<form action="Controller" method="post">
 	
 	<input type="hidden" name="command" value="configuration" />
@@ -43,12 +59,17 @@
 			
 			
 	</form>
+</center>
 	<br>
+<center>
 	<c:set var="errorMessageLogPas" scope="session" value="${errorMessageLogPas }"/>
 	<c:if test="${errorMessageLogPas eq true }"><c:out value="${message_error}" /></c:if>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-     
+</center>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
+
 
 </body>
 </html>
