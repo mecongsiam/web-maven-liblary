@@ -1,41 +1,26 @@
 package by.htp.liblary.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    private int idUser;
-    private String role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_user")
+    private int id;
+    @Column(name = "login")
     private String login;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "role")
+    private String role;
 
-    public int getIdUser() {
-        return idUser;
-    }
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Abonement abonement;
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -48,23 +33,62 @@ public class User implements Serializable {
             return false;
         }
         User user = (User) obj;
-        
-        if (idUser != user.getIdUser()) {
-            return false;
-        }
-        if (!role.equals(user.getRole())) {
+
+
+        if (!login.equals(user.getLogin())) {
 
             return false;
         }
-        if (!login.equals(user.getLogin())) {
-            return false;
-        }
+
         return true;
     }
 
     public int hashcode() {
-        return idUser * 7 + role.hashCode() * 7 + login.hashCode() * 10;
+        return login.hashCode() * 10;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Abonement getAbonement() {
+        return abonement;
+    }
+
+    public void setAbonement(Abonement abonement) {
+        this.abonement = abonement;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
 
     // to do
 }

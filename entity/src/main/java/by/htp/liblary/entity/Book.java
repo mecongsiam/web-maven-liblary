@@ -1,9 +1,24 @@
 package by.htp.liblary.entity;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Book {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_book")
 	private int id;
+	@Column(name = "name")
 	private String name;
-	private String auther;
+	@Column(name = "year")
+	private int year;
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable(name = "auther_pool",joinColumns = {
+			@JoinColumn(name = "id_book")
+	},inverseJoinColumns = {@JoinColumn(name = "id_auther")})
+	private Set<Auther> authers;
+
 	
 	public int getId() {
 		return id;
@@ -17,19 +32,20 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAuther() {
-		return auther;
-	}
-	public void setAuther(String auther) {
-		this.auther = auther;
-	}
+
 	public int getYear() {
 		return year;
 	}
 	public void setYear(int year) {
 		this.year = year;
 	}
-	private int year;
-	
 
+
+	public Set<Auther> getAuthers() {
+		return authers;
+	}
+
+	public void setAuthers(Set<Auther> authers) {
+		this.authers = authers;
+	}
 }

@@ -32,7 +32,7 @@ public class DBUserOperationDAOTest extends TestCase {
 
         User us = new User();
         us.setLogin("admin");
-        us.setIdUser(12);
+       // us.setIdUser(12);
         us.setRole("admin");
 
         assertEquals(us, test.login("admin", "admin"));
@@ -43,7 +43,7 @@ public class DBUserOperationDAOTest extends TestCase {
     public void testNoLogin() throws Exception {
         User us = new User();
         us.setLogin("admin");
-        us.setIdUser(12);
+       // us.setIdUser(12);
         us.setRole("admin");
 
         assertNotSame(us, test.login("pp", "pp"));

@@ -34,8 +34,8 @@ public class MainS {
 				rs = pr.executeQuery();
 				while (rs.next()) {
 					abonement = new Abonement();
-					abonement.setLogin(rs.getString(1));
-					abonement.setIdAbonement(Integer.parseInt(rs.getString(2)));
+					//abonement.setLogin(rs.getString(1));
+					//abonement.setIdAbonement(Integer.parseInt(rs.getString(2)));
 					abonement.setName(rs.getString(3));
 					abonement.setSurname(rs.getString(4));
 					abonement.setEmail(rs.getString(5));

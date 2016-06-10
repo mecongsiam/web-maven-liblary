@@ -42,7 +42,7 @@ public class JSPShowBookTag extends TagSupport {
 				out.write("<tr><td>");
 				out.write(book.getName());
 				out.write("</td><td>");
-				out.write(book.getAuther());
+				out.write("avtor");
 				out.write("</td><td>");
 				out.write(Integer.toString(book.getYear()));
 				

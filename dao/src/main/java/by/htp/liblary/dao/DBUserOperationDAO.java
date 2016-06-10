@@ -14,9 +14,9 @@ import by.htp.liblary.entity.Abonement;
 import by.htp.liblary.entity.User;
 
 public class DBUserOperationDAO implements UserOperationDAO {
-	final private static String SQL_LOGIN = "SELECT role.user_role,users.name,users.id_user "
-			+ "FROM liblary.users,liblary.role where name= ? and password= ? "
-			+ "and liblary.users.id_user=liblary.role.id_user";
+	final private static String SQL_LOGIN = "SELECT user.role,user.login,user.id_user "
+			+ "FROM liblary.user where login= ? and password= ? ";
+
 	private static final String SQL_REGISTER_INSERT_USERS = "INSERT users (name,password) VALUES(?,?)";
 	private static final String SQL_REGISTER_TAKE_ID = "SELECT id_user FROM users WHERE name= ?";
 	private static final String SQL_REGISTER_INSERT_ROLE = "INSERT role (id_user,user_role) VALUES(?,?)";
@@ -48,7 +48,7 @@ public class DBUserOperationDAO implements UserOperationDAO {
 
 					user.setRole(rs.getString(1));
 					user.setLogin(rs.getString(2));
-					user.setIdUser(rs.getInt(3));
+					user.setId(rs.getInt(3));
 
 				}
 
@@ -127,52 +127,52 @@ public class DBUserOperationDAO implements UserOperationDAO {
 
 	}
 
-	public ArrayList<Abonement> takeUserInformation() throws DAOException  {
-		ArrayList<Abonement> arr = new ArrayList<Abonement>();
-		Abonement abonement;
-
-		ConnectionPool p = ConnectionPool.getInstance();
-		Connection con = null;
-
-		ResultSet rs = null;
-
-		try {
-		
-			con = p.takeConnection();
-			try {
-
-				String sql = "SELECT users.name,id_abonement,abonement.name," + "surname,email,adress,phone "
-						+ "from users,abonement where users.id_user=abonement.id_user";
-				PreparedStatement pr = con.prepareStatement(sql);
-
-				rs = pr.executeQuery();
-				while (rs.next()) {
-					abonement = new Abonement();
-					abonement.setLogin(rs.getString(1));
-					abonement.setIdAbonement(Integer.parseInt(rs.getString(2)));
-					abonement.setName(rs.getString(3));
-					abonement.setSurname(rs.getString(4));
-					abonement.setEmail(rs.getString(5));
-					abonement.setAddress(rs.getString(6));
-					abonement.setPhone(rs.getString(7));
-					arr.add(abonement);
-
-
-				}
-
-				con.close();
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				throw new DAOException(e.getMessage(),e);
-			}
-
-		} catch (ConnectionPoolException e) {
-			// TODO Auto-generated catch block
-			throw new DAOException(e.getMessage(),e);
-		}
-		return arr;
-	}
+//	public ArrayList<Abonement> takeUserInformation() throws DAOException  {
+//		ArrayList<Abonement> arr = new ArrayList<Abonement>();
+//		Abonement abonement;
+//
+//		ConnectionPool p = ConnectionPool.getInstance();
+//		Connection con = null;
+//
+//		ResultSet rs = null;
+//
+//		try {
+//
+//			con = p.takeConnection();
+//			try {
+//
+//				String sql = "SELECT users.name,id_abonement,abonement.name," + "surname,email,adress,phone "
+//						+ "from users,abonement where users.id_user=abonement.id_user";
+//				PreparedStatement pr = con.prepareStatement(sql);
+//
+//				rs = pr.executeQuery();
+//				while (rs.next()) {
+//					abonement = new Abonement();
+//					abonement.setLogin(rs.getString(1));
+//					abonement.setIdAbonement(Integer.parseInt(rs.getString(2)));
+//					abonement.setName(rs.getString(3));
+//					abonement.setSurname(rs.getString(4));
+//					abonement.setEmail(rs.getString(5));
+//					abonement.setAddress(rs.getString(6));
+//					abonement.setPhone(rs.getString(7));
+//					arr.add(abonement);
+//
+//
+//				}
+//
+//				con.close();
+//
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				throw new DAOException(e.getMessage(),e);
+//			}
+//
+//		} catch (ConnectionPoolException e) {
+//			// TODO Auto-generated catch block
+//			throw new DAOException(e.getMessage(),e);
+//		}
+//		return arr;
+//	}
 
 	public boolean checkLoginDuality(String login) throws DAOException {
 		String resultLogin = null;
@@ -248,5 +248,10 @@ public class DBUserOperationDAO implements UserOperationDAO {
 		}
 
 		return result;
+	}
+
+	@Override
+	public ArrayList<Abonement> takeUserInformation() throws DAOException {
+		return null;
 	}
 }

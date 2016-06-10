@@ -5,15 +5,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 import by.htp.liblary.dao.connection_pool.ConnectionPool;
 import by.htp.liblary.dao.connection_pool.ConnectionPoolException;
 import by.htp.liblary.dao.exception.DAOException;
 import by.htp.liblary.entity.Book;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-public class DBBookOperationDAO implements BookOperationDAO {
-	private static final String SQL_BOOK_CATALOG="SELECT id_book,book_auther.name,"
+public class DBBookOperationDAO extends OperationDAO implements BookOperationDAO {
+	@Override
+	public Class getPersistentClass() {
+		return Book.class;
+	}
+
+	@Override
+	public ArrayList<Book> takeBookInformation() throws DAOException {
+		Session session = HibernateSessionManager.getSessionFactory().openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from Book");
+		ArrayList<Book> bookList = (ArrayList<Book>) query.list();
+		session.close();
+		return bookList;
+
+	}
+	/*private static final String SQL_BOOK_CATALOG="SELECT id_book,book_auther.name,"
 			+ "group_concat(surname),year as surname from book_auther group by id_book";
 
 
@@ -59,6 +77,6 @@ public class DBBookOperationDAO implements BookOperationDAO {
 		}
 		return arr;
 
-	}
+	}*/
 
 }

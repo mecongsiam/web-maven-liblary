@@ -1,70 +1,81 @@
 package by.htp.liblary.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import javax.persistence.*;
+
+@Entity
 public class Abonement {
+    @GenericGenerator(
+            name = "gen",
+            strategy = "foreign",
+            parameters = @Parameter(name="property",value="user")
+    )
+    @GeneratedValue(generator = "gen")
+    private int id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "surname")
+    private String surname;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "adress")
+    private String address;
+    @Column(name = "phone")
+    private String phone;
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private User user;
 
-	private int idAbonement;
-	private String login;
-	private String name;
-	private String surname;
-	private String email;
-	private String address;
-	private String phone;
 
-	public int getIdAbonement() {
-		return idAbonement;
+    public String getName() {
+        return name;
+    }
 
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public void setIdAbonement(int idAbonement) {
-		this.idAbonement = idAbonement;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 }

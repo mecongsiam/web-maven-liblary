@@ -41,9 +41,9 @@ public class JSPShowUsersTag extends TagSupport {
 			for (int i = 0; i < size; i++) {
 				Abonement abonement = jspUserBean.getElement(i);
 				out.write("<tr><td>");
-				out.write(Integer.toString(abonement.getIdAbonement()));
+				//out.write(Integer.toString(abonement.getIdAbonement()));
 				out.write("</td><td>");
-				out.write(abonement.getLogin());
+				//out.write(abonement.getLogin());
 				out.write("</td><td>");
 				out.write(abonement.getName());
 				out.write("</td><td>");
