@@ -7,12 +7,14 @@ import javax.persistence.*;
 
 @Entity
 public class Abonement {
+    @Id
     @GenericGenerator(
             name = "gen",
             strategy = "foreign",
             parameters = @Parameter(name="property",value="user")
     )
     @GeneratedValue(generator = "gen")
+    @Column(name = "id_abonement")
     private int id;
     @Column(name = "name")
     private String name;
@@ -78,4 +80,11 @@ public class Abonement {
     }
 
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

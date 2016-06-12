@@ -11,6 +11,7 @@ import java.util.Set;
 public class Auther {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_auther")
     private int id;
     @Column(name = "name")
     private String name;
@@ -18,7 +19,7 @@ public class Auther {
     private String surname;
     @Column(name = "date_of_birth")
     private Date date;
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "writers")
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "authers")
     private Set<Book> books;
 
     public int getId() {

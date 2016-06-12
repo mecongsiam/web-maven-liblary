@@ -12,6 +12,6 @@ public interface BookOperationDAO<T> {
 	T  create(T t);
 	T read(int id) throws DAOException;
 	T delete(T t);
-	ArrayList<Book> takeBookInformation() throws DAOException;
+	List<Book> takeBookInformation() throws DAOException;
 
 }

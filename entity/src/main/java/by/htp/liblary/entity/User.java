@@ -17,7 +17,7 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Abonement abonement;
 
 

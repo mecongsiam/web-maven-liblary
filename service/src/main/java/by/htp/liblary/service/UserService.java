@@ -1,6 +1,7 @@
 package by.htp.liblary.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import by.htp.liblary.dao.BookOperationDAO;
 import by.htp.liblary.dao.DAOFactory;
@@ -27,12 +28,16 @@ public final class UserService {
 		UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
 		try {
 			result = userOpDAO.login(login, password);
+
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			throw new ServiceException(e.getMessage(), e);
 		}
+		if(result==null){
+			return new User();
+		}else {
 
-		return result;
+		return result;}
 
 	}
 
@@ -64,8 +69,8 @@ public final class UserService {
 		return result;
 	}
 
-	public static ArrayList<Abonement> showUsers() throws ServiceException {
-		ArrayList<Abonement> result;
+	public static List<User> showUsers() throws ServiceException {
+		List<User> result;
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
 		try {
@@ -78,8 +83,8 @@ public final class UserService {
 
 	}
 
-	public static ArrayList<Book> showBooks() throws ServiceException {
-		ArrayList<Book> result;
+	public static List<Book> showBooks() throws ServiceException {
+		List<Book> result;
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookOperationDAO bookOpDAO = daoFactory.getBookOpDao();
 		try {

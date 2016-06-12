@@ -7,6 +7,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import by.htp.liblary.entity.Abonement;
+import by.htp.liblary.entity.User;
 import by.htp.liblary.jsp_bean.JSPUserBean;
 
 
@@ -39,21 +40,21 @@ public class JSPShowUsersTag extends TagSupport {
 			out.write("<table border=\"1\">");
 
 			for (int i = 0; i < size; i++) {
-				Abonement abonement = jspUserBean.getElement(i);
+				User user = jspUserBean.getElement(i);
 				out.write("<tr><td>");
-				//out.write(Integer.toString(abonement.getIdAbonement()));
+				out.write(Integer.toString(user.getId()));
 				out.write("</td><td>");
-				//out.write(abonement.getLogin());
+				out.write(user.getLogin());
 				out.write("</td><td>");
-				out.write(abonement.getName());
+				out.write(user.getAbonement().getName());
 				out.write("</td><td>");
-				out.write(abonement.getSurname());
+				out.write(user.getAbonement().getSurname());
 				out.write("</td><td>");
-				out.write(abonement.getEmail());
+				out.write(user.getAbonement().getEmail());
 				out.write("</td><td>");
-				out.write(abonement.getAddress());
+				out.write(user.getAbonement().getAddress());
 				out.write("</td><td>");
-				out.write(abonement.getPhone());
+				out.write(user.getAbonement().getPhone());
 				out.write("</td></tr>");
 
 			}

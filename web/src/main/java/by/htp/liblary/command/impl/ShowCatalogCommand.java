@@ -2,6 +2,7 @@ package by.htp.liblary.command.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class ShowCatalogCommand implements Command {
 		// TODO Auto-generated method stub
 		// return null;
 
-		ArrayList<Book> arr;
+		List<Book> arr;
 		try {
 			arr = UserService.showBooks();
 		} catch (ServiceException e) {

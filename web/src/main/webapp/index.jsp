@@ -65,18 +65,18 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><form action="Controller" method="post">
 					<input type="hidden" name="command" value="create_user" /> <input
-						type="submit" value="Register" class="btn btn-default"/><br />
+						type="submit" value="Register" class="btn btn-link"/><br />
 				</form></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${conf_button}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><br/><form action="Controller" method="post">
 							<input type="hidden" name="command" value="en" /> <input
-								type="submit" value="EN" class="btn btn-default"/>
+								type="submit" value="EN" class="btn btn-link"/>
 						</form></li>
 						<li><form action="Controller" method="post">
 							<input type="hidden" name="command" value="ru" /> <input
-								type="submit" value="RU" class="btn btn-default"/><br />
+								type="submit" value="RU" class="btn btn-link"/><br />
 						</form></li>
 						
 					</ul>

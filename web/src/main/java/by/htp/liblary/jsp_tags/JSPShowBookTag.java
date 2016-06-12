@@ -1,11 +1,13 @@
 package by.htp.liblary.jsp_tags;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import by.htp.liblary.entity.Auther;
 import by.htp.liblary.entity.Book;
 import by.htp.liblary.jsp_bean.JSPBookBean;
 
@@ -39,10 +41,19 @@ public class JSPShowBookTag extends TagSupport {
 
 			for (int i = 0; i < size; i++) {
 				Book book = jspBookBean.getElement(i);
+				Set<Auther> autherSet=book.getAuthers();
+				StringBuilder sb=new StringBuilder();
+				String result="";
+				for(Auther auther:autherSet){
+					sb.append(auther.getName());
+					sb.append(",");
+				}
+				result= sb.substring(0,sb.length()-1);
+
 				out.write("<tr><td>");
 				out.write(book.getName());
 				out.write("</td><td>");
-				out.write("avtor");
+				out.write(result);
 				out.write("</td><td>");
 				out.write(Integer.toString(book.getYear()));
 				

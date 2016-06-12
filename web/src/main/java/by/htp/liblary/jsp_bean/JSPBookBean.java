@@ -1,13 +1,14 @@
 package by.htp.liblary.jsp_bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import by.htp.liblary.entity.Book;
 
 public class JSPBookBean {
-private ArrayList<Book> arr;
+private List<Book> arr;
 	
-	public JSPBookBean(ArrayList<Book> arr){
+	public JSPBookBean(List<Book> arr){
 		this.arr=arr;
 	}
 	

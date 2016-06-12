@@ -6,8 +6,10 @@ import javax.servlet.ServletContextListener;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
+import by.htp.liblary.dao.HibernateSessionManager;
 import by.htp.liblary.dao.connection_pool.ConnectionPool;
 import by.htp.liblary.dao.connection_pool.ConnectionPoolException;
+import org.hibernate.Session;
 
 /**
  * Application Lifecycle Listener implementation class DAOListener
@@ -15,7 +17,7 @@ import by.htp.liblary.dao.connection_pool.ConnectionPoolException;
  */
 public class DAOListener implements ServletContextListener {
 	//private static final Logger LOG=LogManager.getLogger("by.htp.liblary.listeners");
-	ConnectionPool connectionPool = ConnectionPool.getInstance();
+
 
 	/**
 	 * Default constructor.
@@ -28,7 +30,8 @@ public class DAOListener implements ServletContextListener {
 	 * @see ServletContextListener#contextDestroyed(ServletContextEvent)
 	 */
 	public void contextDestroyed(ServletContextEvent arg0) {
-		connectionPool.dispose();
+
+		HibernateSessionManager.shutdown();
 		// TODO Auto-generated method stub
 	}
 
@@ -36,15 +39,9 @@ public class DAOListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
-		
+		 HibernateSessionManager.getSessionFactory().openSession();
 		// TODO Auto-generated method stub
-		try {
-			//LOG.info("Init");
-			connectionPool.initPoolData();
-		} catch (ConnectionPoolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 }
