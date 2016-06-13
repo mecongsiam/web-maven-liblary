@@ -65,6 +65,18 @@
 		<filter-name>HibernateFilter</filter-name>
 		<url-pattern>/login</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HibernateFilter</filter-name>
+		<url-pattern>/register_user</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HibernateFilter</filter-name>
+		<url-pattern>/show_users</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HibernateFilter</filter-name>
+		<url-pattern>/show_catalog</url-pattern>
+	</filter-mapping>
 	
 	 <jsp-config>
   <taglib>

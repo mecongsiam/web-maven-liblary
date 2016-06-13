@@ -12,18 +12,18 @@ import by.htp.liblary.controller.PageName;
 
 public class TakeLocalizationPage implements Command {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		String page;
-		// TODO Auto-generated method stub
-		page = PageName.LOCAL_PAGE;
-		try {
-			request.getRequestDispatcher(page).forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        String page;
+        // TODO Auto-generated method stub
+        page = PageName.LOCAL_PAGE;
+        try {
+            request.getRequestDispatcher(page).forward(request, response);
+        } catch (ServletException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

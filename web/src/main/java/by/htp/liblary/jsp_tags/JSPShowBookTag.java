@@ -13,59 +13,60 @@ import by.htp.liblary.jsp_bean.JSPBookBean;
 
 public class JSPShowBookTag extends TagSupport {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4614863814305782002L;
-	
-	private JSPBookBean jspBookBean;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4614863814305782002L;
 
-	public JSPBookBean getJspBookBean() {
-		return jspBookBean;
-	}
+    private JSPBookBean jspBookBean;
 
-	public void setJspBookBean(JSPBookBean jspBookBean) {
-		this.jspBookBean = jspBookBean;
-	}
+    public JSPBookBean getJspBookBean() {
+        return jspBookBean;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public int doStartTag() throws JspException {
-		int size = new Integer(jspBookBean.getSize());
+    public void setJspBookBean(JSPBookBean jspBookBean) {
+        this.jspBookBean = jspBookBean;
+    }
 
-		try {
-			JspWriter out = pageContext.getOut();
-			out.write("Book Information");
-			out.write("<table border=\"1\">");
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
-			for (int i = 0; i < size; i++) {
-				Book book = jspBookBean.getElement(i);
-				Set<Auther> autherSet=book.getAuthers();
-				StringBuilder sb=new StringBuilder();
-				String result="";
-				for(Auther auther:autherSet){
-					sb.append(auther.getName());
-					sb.append(",");
-				}
-				result= sb.substring(0,sb.length()-1);
+    public int doStartTag() throws JspException {
+        int size = new Integer(jspBookBean.getSize());
 
-				out.write("<tr><td>");
-				out.write(book.getName());
-				out.write("</td><td>");
-				out.write(result);
-				out.write("</td><td>");
-				out.write(Integer.toString(book.getYear()));
-				
-				out.write("</td></tr>");
+        try {
+            JspWriter out = pageContext.getOut();
+            out.write("Book Information");
+            out.write("<table border=\"1\">");
 
-			}
-			out.write("</table>");
-		} catch (IOException e) {
-			throw new JspException(e.getMessage());
-		}
-		return SKIP_BODY;
+            for (int i = 0; i < size; i++) {
+                Book book = jspBookBean.getElement(i);
+                Set<Auther> autherSet = book.getAuthers();
+                StringBuilder sb = new StringBuilder();
+                String result = "";
+                for (Auther auther : autherSet) {
+                    sb.append(auther.getName());
+                    sb.append(",");
+                }
+                result = sb.substring(0, sb.length() - 1);
 
-	}
+                out.write("<tr><td>");
+                out.write(book.getName());
+                out.write("</td><td>");
+                out.write(result);
+                out.write("</td><td>");
+                out.write(Integer.toString(book.getYear()));
+
+                out.write("</td></tr>");
+
+            }
+            out.write("</table>");
+        } catch (IOException e) {
+            throw new JspException(e.getMessage());
+        }
+        return SKIP_BODY;
+
+    }
 
 }

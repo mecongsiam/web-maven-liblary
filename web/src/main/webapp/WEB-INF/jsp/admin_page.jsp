@@ -43,7 +43,7 @@
 			type="submit" value="${create_user} ">
 	</form>
 	<br>
-	<form action="Controller" method="post">
+	<form action="Controller" method="get">
 		<input type="hidden" name="command" value="show_users" /> <input
 			type="submit" value="${user_inf} ">
 	</form>

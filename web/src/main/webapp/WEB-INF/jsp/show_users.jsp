@@ -25,9 +25,17 @@
 	<center>
 	<jsp:useBean id="userbean" class="by.htp.liblary.jsp_bean.JSPUserBean" scope="request"/>
 	<mytag:jsparr jspUserBean="${userbean }"/>
+
 	
 	
 	<br/>
+		<ul class = "pagination">
+			<li><a href = "#">&laquo;</a></li>
+			<li><a href = "Controller?command=show_users&numpage=0">1</a></li>
+			<li><a href = "Controller?command=show_users&numpage=1">2</a></li>
+			<li><a href = "Controller?command=show_users&numpage=2">3</a></li>
+			<li><a href = "#">&raquo;</a></li>
+		</ul>
 	<br>
 	<form action="Controller" method="post">
 

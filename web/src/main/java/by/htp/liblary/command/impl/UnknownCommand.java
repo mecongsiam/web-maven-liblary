@@ -8,10 +8,10 @@ import by.htp.liblary.command.exception.CommandException;
 
 public class UnknownCommand implements Command {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		// TODO Auto-generated method stub
-		// return null;
-	}
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        // TODO Auto-generated method stub
+        // return null;
+    }
 
 }
