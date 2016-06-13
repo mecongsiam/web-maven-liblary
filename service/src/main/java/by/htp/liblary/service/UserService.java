@@ -3,16 +3,15 @@ package by.htp.liblary.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.liblary.dao.BookOperationDAO;
-import by.htp.liblary.dao.DAOFactory;
-import by.htp.liblary.dao.DBBookOperationDAO;
-import by.htp.liblary.dao.UserOperationDAO;
+import by.htp.liblary.dao.*;
 import by.htp.liblary.dao.connection_pool.ConnectionPool;
 import by.htp.liblary.dao.exception.DAOException;
 import by.htp.liblary.entity.Abonement;
 import by.htp.liblary.entity.Book;
 import by.htp.liblary.entity.User;
 import by.htp.liblary.service.exception.ServiceException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public final class UserService {
 
@@ -26,9 +25,11 @@ public final class UserService {
 		}
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
+		Session session=HibernateSessionManager.currentSession();
+		Transaction transaction=session.beginTransaction();
 		try {
 			result = userOpDAO.login(login, password);
-
+			transaction.commit();
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			throw new ServiceException(e.getMessage(), e);

@@ -35,6 +35,7 @@ public class HibernateSessionManager {
     public static Session currentSession(){
         Session session=(Session)local.get();
         if(session==null){
+            System.out.print("Lololo");
             session=sessionFactory.openSession();
             local.set(session);
         }

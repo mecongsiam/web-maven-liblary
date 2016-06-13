@@ -2,6 +2,7 @@ package by.htp.liblary.dao;
 
 
 import java.util.List;
+
 import by.htp.liblary.dao.exception.DAOException;
 import by.htp.liblary.entity.Abonement;
 import by.htp.liblary.entity.User;
@@ -11,15 +12,13 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 
-
 public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO {
 
 
     public User login(String login, String password) {
 
 
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-        session.beginTransaction();
+        Session session = HibernateSessionManager.currentSession();
         Criteria criteria = session.createCriteria(getPersistentClass());
         criteria.add(Restrictions.eq("login", login));
         criteria.add(Restrictions.eq("password", login));

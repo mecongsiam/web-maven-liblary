@@ -56,6 +56,15 @@
 		<filter-name>RegisterFilter</filter-name>
 		<url-pattern>/register</url-pattern>
 	</filter-mapping>
+	<filter>
+		<display-name>RegisterFilter</display-name>
+		<filter-name>HibernateFilter</filter-name>
+		<filter-class>by.htp.liblary.filters.HibernateFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HibernateFilter</filter-name>
+		<url-pattern>/login</url-pattern>
+	</filter-mapping>
 	
 	 <jsp-config>
   <taglib>
