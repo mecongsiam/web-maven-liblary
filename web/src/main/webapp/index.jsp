@@ -48,12 +48,12 @@
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav"></ul>
 				<%--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>--%>
 				<%--<li><a href="#">Link</a></li>--%>
 
 
-					</ul>
+
 
 
 				</li>
@@ -63,10 +63,7 @@
 
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><form action="Controller" method="post">
-					<input type="hidden" name="command" value="create_user" /> <input
-						type="submit" value="Register" class="btn btn-link"/><br />
-				</form></li>
+				<li><a href="Controller?command=create_user">Register</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${conf_button}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
