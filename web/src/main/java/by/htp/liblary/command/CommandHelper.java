@@ -21,6 +21,8 @@ public final class CommandHelper {
 		commands.put(CommandName.BACK, new BackCommand());
 		commands.put(CommandName.SHOW_USERS, new ShowUsersInformation());
 		commands.put(CommandName.CHANGE_INTERVAL,new ChangeInterval());
+		commands.put(CommandName.ADD_POSITION,new AddPosition());
+		commands.put(CommandName.BACK_POSITION,new BackPosition());
 
 	}
 

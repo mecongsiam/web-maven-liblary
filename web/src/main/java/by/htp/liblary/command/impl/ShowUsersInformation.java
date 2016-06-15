@@ -24,17 +24,29 @@ public class ShowUsersInformation implements Command {
     private static final String PREVIOUS_PAGE = "previousPage";
 
     private static final String PREVIOUS_REQUEST = "previousRequest";
-    int interval=3;
-    int page = 0;
+
+    private int interval=3;
+    private int page = 0;
+    private int position=0;
+    private int maxNumPosition;
+
+
 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
         // TODO Auto-generated method stub
+        if (request.getSession().getAttribute("position")==null){
+            request.getSession().setAttribute("position",0);
+        }
+        position=((Integer)request.getSession().getAttribute("position"));
+        System.out.println("POS"+position);
         request.getSession().setAttribute(PREVIOUS_PAGE,PageName.ADMIN);
         String pageresult = request.getParameter(NUMPAGE);
         String res=(String)request.getSession().getAttribute("numOfUsers");
+
+
 
         int countAllUsers;
 
@@ -54,8 +66,13 @@ public class ShowUsersInformation implements Command {
             // TODO Auto-generated catch block
             throw new CommandException(e.getMessage(), e);
         }
-        System.out.println(countAllUsers);
-        JSPUserBean jsp = new JSPUserBean(arr,countAllUsers,interval);
+
+        maxNumPosition=((countAllUsers/interval)/3);
+        if(position>maxNumPosition){
+            position=maxNumPosition;
+            request.getSession().setAttribute("position",maxNumPosition);
+        }
+        JSPUserBean jsp = new JSPUserBean(arr,countAllUsers,interval,position);
         request.setAttribute(USERBEAN, jsp);
         Map<String, String[]> params = request.getParameterMap();
         String[] temp;
