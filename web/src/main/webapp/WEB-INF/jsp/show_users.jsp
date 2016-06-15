@@ -28,14 +28,6 @@
 	<jsp:useBean id="userbean" class="by.htp.liblary.jsp_bean.JSPUserBean" scope="request"/>
 	<mytag:jsparr jspUserBean="${userbean }"/>
 	<mytag:pagin jspUserBean="${userbean}"/>
-	<form action="Controller" method="post">
-		<input type="hidden" name="command" value="change_interval" />
-		<select name="userInterval">
-			<option value="3">3</option>
-			<option value="5">5</option>	</select>  <br /> <input
-			type="submit" value="Interval" />
-	</form>
-
 
 	<form action="Controller" method="post">
 

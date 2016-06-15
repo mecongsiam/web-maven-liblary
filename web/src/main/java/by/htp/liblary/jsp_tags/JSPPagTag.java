@@ -51,6 +51,14 @@ public class JSPPagTag extends TagSupport {
                 out.write("\t\t\t<li><a href = \"Controller?command=show_users&numpage="+pageCommand+"\">"+page+"</a></li>\n");}
             }
             out.write("<li><a href = \"Controller?command=add_position\">&raquo;</a></li>");
+            out.write("<li><li class=\"dropdown\">\n" +
+                    "    <button class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Interval\n" +
+                    "    <span class=\"caret\"></span></button>\n" +
+                    "    <ul class=\"dropdown-menu\">\n" +
+                    "      <li><a href=\"Controller?command=change_interval&userInterval=3\">3</a></li>\n" +
+                    "      <li><a href=\"Controller?command=change_interval&userInterval=5\">5</a></li>\n" +
+                    "    </ul>\n" +
+                    "  </li></li>");
             out.write("\t\t</ul>");
 
 
