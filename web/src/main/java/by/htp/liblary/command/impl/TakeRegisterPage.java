@@ -37,7 +37,7 @@ public class TakeRegisterPage implements Command {
         String page;
 
         page = PageName.REGISTER;
-        request.getSession().setAttribute(PREVIOUS_PAGE, PageName.REGISTER);
+        request.getSession().setAttribute(PREVIOUS_PAGE, PageName.ADMIN);
         try {
             request.getRequestDispatcher(page).forward(request, response);
         } catch (ServletException e) {

@@ -3,17 +3,7 @@ package by.htp.liblary.command;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.htp.liblary.command.impl.AddBookCommand;
-import by.htp.liblary.command.impl.BackCommand;
-import by.htp.liblary.command.impl.TakeLocalizationPage;
-import by.htp.liblary.command.impl.TakeRegisterPage;
-import by.htp.liblary.command.impl.ChangeLocalization;
-import by.htp.liblary.command.impl.Exit;
-import by.htp.liblary.command.impl.LoginCommand;
-import by.htp.liblary.command.impl.RegisterUserCommand;
-import by.htp.liblary.command.impl.ShowCatalogCommand;
-import by.htp.liblary.command.impl.ShowUsersInformation;
-import by.htp.liblary.command.impl.UnknownCommand;
+import by.htp.liblary.command.impl.*;
 
 public final class CommandHelper {
 	private Map<CommandName, Command> commands = new HashMap<CommandName, Command>();
@@ -30,6 +20,7 @@ public final class CommandHelper {
 		commands.put(CommandName.CREATE_USER, new TakeRegisterPage());
 		commands.put(CommandName.BACK, new BackCommand());
 		commands.put(CommandName.SHOW_USERS, new ShowUsersInformation());
+		commands.put(CommandName.CHANGE_INTERVAL,new ChangeInterval());
 
 	}
 

@@ -11,7 +11,7 @@ public class Abonement {
     @GenericGenerator(
             name = "gen",
             strategy = "foreign",
-            parameters = @Parameter(name="property",value="user")
+            parameters = @Parameter(name = "property", value = "user")
     )
     @GeneratedValue(generator = "gen")
     @Column(name = "id_abonement")

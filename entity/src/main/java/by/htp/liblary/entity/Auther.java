@@ -19,7 +19,7 @@ public class Auther {
     private String surname;
     @Column(name = "date_of_birth")
     private Date date;
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "authers")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "authers")
     private Set<Book> books;
 
     public int getId() {

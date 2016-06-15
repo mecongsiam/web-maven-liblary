@@ -8,9 +8,13 @@ import by.htp.liblary.entity.User;
 
 public class JSPUserBean {
     private List<User> arr;
+    private int countAllUsers;
+    private int interval;
 
-    public JSPUserBean(List<User> arr) {
+    public JSPUserBean(List<User> arr,int countAllUsers,int interval) {
         this.arr = arr;
+        this.countAllUsers=countAllUsers;
+        this.interval=interval;
     }
 
     public JSPUserBean() {
@@ -26,4 +30,19 @@ public class JSPUserBean {
     }
 
 
+    public int getCountAllUsers() {
+        return countAllUsers;
+    }
+
+    public void setCountAllUsers(int countAllUsers) {
+        this.countAllUsers = countAllUsers;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
 }

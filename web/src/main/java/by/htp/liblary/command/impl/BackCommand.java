@@ -17,7 +17,7 @@ public class BackCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		// TODO Auto-generated method stub
 
-		if (request.getSession().getAttribute(PREVIOUS_REQUEST) != null) {
+		/*if (request.getSession().getAttribute(PREVIOUS_REQUEST) != null) {
 			try {
 				response.sendRedirect(request.getSession().getAttribute(PREVIOUS_REQUEST).toString());
 			} catch (IOException e) {
@@ -35,6 +35,14 @@ public class BackCommand implements Command {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}*/
+		try {
+			request.getRequestDispatcher(request.getSession().getAttribute(PREVIOUS_PAGE).toString())
+                    .forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}

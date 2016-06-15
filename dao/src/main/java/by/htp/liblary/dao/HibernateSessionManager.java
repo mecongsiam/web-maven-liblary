@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSessionManager {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
-    public static final ThreadLocal local =new ThreadLocal();
+    public static final ThreadLocal local = new ThreadLocal();
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -32,11 +32,10 @@ public class HibernateSessionManager {
         getSessionFactory().close();
     }
 
-    public static Session currentSession(){
-        Session session=(Session)local.get();
-        if(session==null){
-            System.out.print("Lololo");
-            session=sessionFactory.openSession();
+    public static Session currentSession() {
+        Session session = (Session) local.get();
+        if (session == null) {
+            session = sessionFactory.openSession();
             local.set(session);
         }
 

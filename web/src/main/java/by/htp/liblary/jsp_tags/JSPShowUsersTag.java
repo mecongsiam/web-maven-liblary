@@ -58,7 +58,16 @@ public class JSPShowUsersTag extends TagSupport {
                 out.write("</td></tr>");
 
             }
+
             out.write("</table>");
+
+//            out.write("<ul class = \"pagination\">\n" +
+//                    "\t\t\t<li><a href = \"#\">&laquo;</a></li>\n" +
+//                    "\t\t\t<li><a href = \"Controller?command=show_users&numpage="+i+"\">1</a></li>\n" +
+//                    "\t\t\t<li><a href = \"Controller?command=show_users&numpage=1\">2</a></li>\n" +
+//                    "\t\t\t<li><a href = \"Controller?command=show_users&numpage="+b+"\">3</a></li>\n" +
+//                    "\t\t\t<li><a href = \"#\">&raquo;</a></li>\n" +
+//                    "\t\t</ul>");
         } catch (IOException e) {
             throw new JspException(e.getMessage());
         }

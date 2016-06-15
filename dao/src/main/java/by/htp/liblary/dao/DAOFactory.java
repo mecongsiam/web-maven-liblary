@@ -1,30 +1,28 @@
 package by.htp.liblary.dao;
 
 public class DAOFactory {
-	private static final DAOFactory instance = new DAOFactory();
+    private static final DAOFactory instance = new DAOFactory();
 
 
-	private UserOperationDAO userOpDao = new DBUserOperationDAO();
-	private BookOperationDAO bookOpDao = new DBBookOperationDAO();
+    private UserOperationDAO userOpDao = new DBUserOperationDAO();
+    private BookOperationDAO bookOpDao = new DBBookOperationDAO();
 
-	private DAOFactory() {
-	}
+    private DAOFactory() {
+    }
 
-	public static DAOFactory getInstance() {
+    public static DAOFactory getInstance() {
 
-		return instance;
-	}
+        return instance;
+    }
 
-	public UserOperationDAO getUserOpDao() {
-		return userOpDao;
-	}
+    public UserOperationDAO getUserOpDao() {
+        return userOpDao;
+    }
 
 
-
-	public BookOperationDAO getBookOpDao() {
-		return bookOpDao;
-	}
-
+    public BookOperationDAO getBookOpDao() {
+        return bookOpDao;
+    }
 
 
 }

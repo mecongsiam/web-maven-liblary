@@ -7,7 +7,6 @@ import by.htp.liblary.dao.exception.DAOException;
 import by.htp.liblary.entity.Abonement;
 import by.htp.liblary.entity.User;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -23,7 +22,7 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
         criteria.add(Restrictions.eq("login", login));
         criteria.add(Restrictions.eq("password", login));
         User user = (User) criteria.uniqueResult();
-        session.close();
+
 
         return user;
 
@@ -53,8 +52,8 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
 
 
     public boolean checkLoginDuality(String login) throws DAOException {
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-        session.beginTransaction();
+        Session session = HibernateSessionManager.currentSession();
+
         Criteria criteria = session.createCriteria(getPersistentClass());
         criteria.add(Restrictions.eq("login", login));
 
@@ -65,8 +64,8 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
     }
 
     public boolean checkEmailDuality(String email) throws DAOException {
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-        session.beginTransaction();
+        Session session = HibernateSessionManager.currentSession();
+
         Criteria criteria = session.createCriteria(Abonement.class);
         criteria.add(Restrictions.eq("email", email));
 
@@ -78,14 +77,25 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
 
 
     @Override
-    public List<User> takeUserInformation() throws DAOException {
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("from User");
-        List<User> userList = query.list();
-        session.close();
+    public List<User> takeUserInformation(int page,int interval) throws DAOException {
+        Session session = HibernateSessionManager.currentSession();
+
+
+        Criteria criteria = session.createCriteria(getPersistentClass());
+        criteria.setFirstResult(page * interval);
+        criteria.setMaxResults(interval);
+
+        List<User> userList = criteria.list();
+
         return userList;
 
+    }
+    public int countAllUsers() throws DAOException{
+        Session session=HibernateSessionManager.currentSession();
+        Criteria criteria=session.createCriteria(getPersistentClass());
+        List<User> userList=criteria.list();
+        int countAllUsers=userList.size();
+        return countAllUsers;
     }
 
     @Override

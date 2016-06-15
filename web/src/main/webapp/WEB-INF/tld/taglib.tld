@@ -27,4 +27,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>pagin</name>
+		<tag-class>by.htp.liblary.jsp_tags.JSPPagTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>jspUserBean</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
 	</taglib>
