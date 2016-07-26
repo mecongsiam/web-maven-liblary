@@ -1,5 +1,8 @@
 package by.htp.liblary.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,7 +20,7 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private Abonement abonement;
 
 

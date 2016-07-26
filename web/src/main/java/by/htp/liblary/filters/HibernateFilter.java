@@ -1,7 +1,6 @@
 package by.htp.liblary.filters;
 
 
-import by.htp.liblary.dao.HibernateSessionManager;
 import org.hibernate.Session;
 
 import javax.servlet.FilterChain;
@@ -25,10 +24,10 @@ public class HibernateFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-        System.out.println(HibernateSessionManager.currentSession().isOpen());
+        //Session session = HibernateSessionManager.getSessionFactory().openSession();
+        //System.out.println(HibernateSessionManager.currentSession().isOpen());
         filterChain.doFilter(httpRequest, httpResponse);
-        session.close();
+        //session.close();
 
     }
 

@@ -2,13 +2,15 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
 		<!-- Bootstrap -->
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +29,7 @@
 <fmt:message bundle="${loc}" key="local.locbutton.name.configuration"
 	var="conf_button" />
 <fmt:message bundle="${loc}" key="local.message.error"
-	var="message_error" />	
+	var="message_error" />
 
 
 </head>
@@ -43,18 +45,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="/liblary/index.jsp">Brand</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav"></ul>
-				<%--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>--%>
-				<%--<li><a href="#">Link</a></li>--%>
-
-
-
-
 
 				</li>
 
@@ -63,19 +59,19 @@
 
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="Controller?command=create_user">Register</a></li>
+				<li><a href="create_user">Register</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${conf_button}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><br/><form action="Controller" method="post">
+						<li><br/><form action="change_loc" method="post">
 							<input type="hidden" name="command" value="en" /> <input
 								type="submit" value="EN" class="btn btn-link"/>
 						</form></li>
-						<li><form action="Controller" method="post">
+						<li><form action="change_loc" method="post">
 							<input type="hidden" name="command" value="ru" /> <input
 								type="submit" value="RU" class="btn btn-link"/><br />
 						</form></li>
-						
+
 					</ul>
 				</li>
 			</ul>
@@ -94,15 +90,17 @@
 
 
 	<br>
-	<form action="login" method="post">
+
+	<s:url value="/check" var="loginUrl" />
+	<sf:form action="${loginUrl}" role="form" method="post">
 
 		<input type="hidden" name="command" value="login" /><c:out value="${message_login }"/> : <br /> <input
 			type="text" name="login" value=""class="input-group-lg" placeholder="enter login" /> <br /><c:out value="${message_password }"/> :<br /> <input
 			type="password" name="password" value="" /><br /> <br>
-			<input type="submit" value="${log_button }" class="btn btn-default"  />
-			
-			
-	</form>
+			<input type="submit" value="${log_button }"  class="btn btn-default"  />
+
+
+	</sf:form>
 </center>
 	<br>
 <center>
@@ -112,7 +110,7 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/bootstrap.js"></script>
 
 
 </body>

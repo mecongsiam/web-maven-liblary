@@ -4,9 +4,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Abonement {
+public class Abonement implements Serializable {
+
     @Id
     @GenericGenerator(
             name = "gen",

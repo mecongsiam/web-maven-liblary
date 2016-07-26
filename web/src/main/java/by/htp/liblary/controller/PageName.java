@@ -9,9 +9,9 @@ public final class PageName {
 	public static final String LOCAL_PAGE = "WEB-INF/jsp/local.jsp";
 	public static final String USER_PAGE = "WEB-INF/jsp/user_page.jsp";
 
-	public static final String ADMIN = "WEB-INF/jsp/admin_page.jsp";
-	public static final String REGISTER = "WEB-INF/jsp/register.jsp";
-	public static final String SHOW_USERS = "WEB-INF/jsp/show_users.jsp";
-	public static final String SHOW_BOOKS = "WEB-INF/jsp/show_book.jsp";
+	public static final String ADMIN = "WEB-INF/views/admin/admin_page.jspx";
+	public static final String REGISTER = "WEB-INF/views/admin/register.jsp";
+	public static final String SHOW_USERS = "WEB-INF/views/admin/show_users.jsp";
+	public static final String SHOW_BOOKS = "WEB-INF/views/admin/show_book.jsp";
 
 }

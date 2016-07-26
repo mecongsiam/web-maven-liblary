@@ -7,6 +7,7 @@ import by.htp.liblary.dao.exception.DAOException;
 
 import by.htp.liblary.entity.User;
 
+
 public interface UserOperationDAO<T> {
 
     User login(String login, String password) throws DAOException;
@@ -22,14 +23,13 @@ public interface UserOperationDAO<T> {
     boolean register(String login, String password, String name, String email, String address, String phone,
                      String role, String surname) throws DAOException;
 
-     boolean checkLoginDuality(String login) throws DAOException;
+    boolean checkLoginDuality(String login) throws DAOException;
 
-     boolean checkEmailDuality(String email) throws DAOException;
+    boolean checkEmailDuality(String email) throws DAOException;
 
-     List<User> takeUserInformation(int page,int interval) throws DAOException;
+    List<User> takeUserInformation(int page, int interval) throws DAOException;
 
     int countAllUsers() throws DAOException;
-
 
 
 }

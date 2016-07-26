@@ -42,21 +42,21 @@ public class JSPPagTag extends TagSupport {
         try {
             JspWriter out = pageContext.getOut();
             out.write("<ul class = \"pagination\">\n");
-            out.write("<li><a href = \"Controller?command=back_position\">&laquo;</a></li>");
+            out.write("<li><a href = \"back_position\">&laquo;</a></li>");
             for(int i=0;i<3;i++){
                 if(numOfPages>=page+1){
                     System.out.println(numOfPages+" "+pageCommand);
                  page=i+1+(position*3);
                 pageCommand=i+(position*3);
-                out.write("\t\t\t<li><a href = \"Controller?command=show_users&numpage="+pageCommand+"\">"+page+"</a></li>\n");}
+                out.write("\t\t\t<li><a href = \"show_users?command=show_users&numpage="+pageCommand+"\">"+page+"</a></li>\n");}
             }
-            out.write("<li><a href = \"Controller?command=add_position\">&raquo;</a></li>");
+            out.write("<li><a href = \"add_position\">&raquo;</a></li>");
             out.write("<li><li class=\"dropdown\">\n" +
                     "    <button class=\"btn btn-primary dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Interval\n" +
                     "    <span class=\"caret\"></span></button>\n" +
                     "    <ul class=\"dropdown-menu\">\n" +
-                    "      <li><a href=\"Controller?command=change_interval&userInterval=3\">3</a></li>\n" +
-                    "      <li><a href=\"Controller?command=change_interval&userInterval=5\">5</a></li>\n" +
+                    "      <li><a href=\"change_interval?command=change_interval&userInterval=3\">3</a></li>\n" +
+                    "      <li><a href=\"change_interval?command=change_interval&userInterval=5\">5</a></li>\n" +
                     "    </ul>\n" +
                     "  </li></li>");
             out.write("\t\t</ul>");

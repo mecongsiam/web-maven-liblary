@@ -12,26 +12,51 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			WEB-INF/dispatcher-servlet.xml
+			WEB-INF/security-context.xml
+		</param-value>
+	</context-param>
 	<servlet>
-		<description></description>
-		<display-name>Controller</display-name>
-		<servlet-name>Controller</servlet-name>
-		<servlet-class>by.htp.liblary.controller.Controller</servlet-class>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>Controller</servlet-name>
-		<url-pattern>/Controller</url-pattern>
-	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Controller</servlet-name>
-		<url-pattern>/login</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Controller</servlet-name>
-		<url-pattern>/register</url-pattern>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>sessionFactoryBeanName</param-name>
+			<param-value>sessionFactory</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	<!--<filter>
 		<display-name>LoginFilter</display-name>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>by.htp.liblary.filters.LoginFilter</filter-class>
@@ -39,10 +64,7 @@
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/login</url-pattern>
-	</filter-mapping>
-	<listener>
-		<listener-class>by.htp.liblary.listeners.DAOListener</listener-class>
-	</listener>
+	</filter-mapping>-->
 	<filter>
 		<display-name>RegisterFilter</display-name>
 		<filter-name>RegisterFilter</filter-name>

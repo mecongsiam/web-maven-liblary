@@ -11,25 +11,38 @@ import by.htp.liblary.entity.Book;
 import by.htp.liblary.entity.User;
 import by.htp.liblary.service.exception.ServiceException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-public final class UserService {
+@Service
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+public class UserService<T> implements IUserService {
+    @Autowired
+    private UserOperationDAO dbUserOperationDAO;
+    @Autowired
+    private BookOperationDAO bookOperationDAO;
+    @Autowired
+    private SessionFactory sessionFactory;
 
 
-    public static User checkLogin(String login, String password) throws ServiceException {
+    public User checkLogin(String login, String password) throws ServiceException {
 
         User result = null;
         if (!Validator.loginValidator(login, password)) {
 
             throw new ServiceException("Invalid login or password");
         }
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
-        Session session = HibernateSessionManager.currentSession();
-        Transaction transaction = session.beginTransaction();
+
+
         try {
-            result = userOpDAO.login(login, password);
-            transaction.commit();
+
+            result = dbUserOperationDAO.login(login, password);
+
+
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
@@ -56,36 +69,27 @@ public final class UserService {
 
     }
 
-    public static boolean regUser(String login, String password, String name, String surname, String email,
-                                  String address, String phone, String role) throws ServiceException {
+    public boolean regUser(String login, String password, String name, String surname, String email,
+                           String address, String phone, String role) throws ServiceException {
         boolean result = false;
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
+
         try {
 
-            Session session = HibernateSessionManager.currentSession();
+            result = dbUserOperationDAO.register(login, password, name, email, address, phone, role, surname);
 
-            Transaction transaction = session.beginTransaction();
-
-            result = userOpDAO.register(login, password, name, email, address, phone, role, surname);
-            transaction.commit();
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
         }
-
         return result;
     }
 
-    public static List<User> showUsers(int page,int interval) throws ServiceException {
+    public  List<User> showUsers(int page, int interval) throws ServiceException {
         List<User> result;
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
         try {
-            Session session = HibernateSessionManager.currentSession();
-            Transaction transaction = session.beginTransaction();
-            result = userOpDAO.takeUserInformation(page,interval);
-            transaction.commit();
+
+            result = dbUserOperationDAO.takeUserInformation(page, interval);
+
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
@@ -93,32 +97,27 @@ public final class UserService {
         return result;
 
     }
-    public static int countAllUsers() throws ServiceException{
-        int countAllUsers;
-        DAOFactory daoFactory=DAOFactory.getInstance();
-        UserOperationDAO userOpDao=daoFactory.getUserOpDao();
-        Session session=HibernateSessionManager.currentSession();
-        Transaction transaction=session.beginTransaction();
-        try {
-             countAllUsers= userOpDao.countAllUsers();
 
-            transaction.commit();
+    public  int countAllUsers() throws ServiceException {
+        int countAllUsers;
+
+        try {
+            countAllUsers = dbUserOperationDAO.countAllUsers();
+
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage(), e);
         }
-        System.out.println(countAllUsers+"service");
+        System.out.println(countAllUsers + "service");
         return countAllUsers;
     }
 
-    public static List<Book> showBooks() throws ServiceException {
+    public  List<Book> showBooks() throws ServiceException {
         List<Book> result;
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        BookOperationDAO bookOpDAO = daoFactory.getBookOpDao();
+
         try {
-            Session session = HibernateSessionManager.currentSession();
-            Transaction transaction = session.beginTransaction();
-            result = bookOpDAO.takeBookInformation();
-            transaction.commit();
+
+            result = bookOperationDAO.takeBookInformation();
+
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
@@ -183,15 +182,13 @@ public final class UserService {
         return true;
     }
 
-    public static boolean reqLoginDualityValidator(String login) throws ServiceException {
+    public  boolean reqLoginDualityValidator(String login) throws ServiceException {
         boolean result = false;
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
+
         try {
-            Session session = HibernateSessionManager.currentSession();
-            Transaction transaction = session.beginTransaction();
-            result = userOpDAO.checkLoginDuality(login);
-            transaction.commit();
+
+            result = dbUserOperationDAO.checkLoginDuality(login);
+
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
@@ -204,15 +201,13 @@ public final class UserService {
         return true;
     }
 
-    public static boolean regEmailDualityValidatoe(String email) throws ServiceException {
+    public  boolean regEmailDualityValidatoe(String email) throws ServiceException {
         boolean result;
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        UserOperationDAO userOpDAO = daoFactory.getUserOpDao();
+
         try {
-            Session session = HibernateSessionManager.currentSession();
-            Transaction transaction = session.beginTransaction();
-            result = userOpDAO.checkEmailDuality(email);
-            transaction.commit();
+
+            result = dbUserOperationDAO.checkEmailDuality(email);
+
         } catch (DAOException e) {
             // TODO Auto-generated catch block
             throw new ServiceException(e.getMessage(), e);
@@ -224,5 +219,10 @@ public final class UserService {
 
         return true;
     }
+    public UserOperationDAO getDbUserOperationDAO() {
+        return dbUserOperationDAO;
+    }
+
+
 
 }

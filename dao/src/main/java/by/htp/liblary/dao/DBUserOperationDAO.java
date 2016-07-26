@@ -9,20 +9,23 @@ import by.htp.liblary.entity.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO {
+
+
+    public DBUserOperationDAO() {
+    }
 
 
     public User login(String login, String password) {
 
-
-        Session session = HibernateSessionManager.currentSession();
+        Session session = getCurrentSession();
         Criteria criteria = session.createCriteria(getPersistentClass());
         criteria.add(Restrictions.eq("login", login));
         criteria.add(Restrictions.eq("password", login));
         User user = (User) criteria.uniqueResult();
-
 
         return user;
 
@@ -43,16 +46,15 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
         abonement.setPhone(phone);
         user.setAbonement(abonement);
         abonement.setUser(user);
-
         create(user);
-
+        create(abonement);
 
         return true;
     }
 
 
     public boolean checkLoginDuality(String login) throws DAOException {
-        Session session = HibernateSessionManager.currentSession();
+        Session session = getCurrentSession();
 
         Criteria criteria = session.createCriteria(getPersistentClass());
         criteria.add(Restrictions.eq("login", login));
@@ -60,42 +62,41 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
         if (criteria.uniqueResult() != null) {
             return false;
         }
+
         return true;
     }
 
     public boolean checkEmailDuality(String email) throws DAOException {
-        Session session = HibernateSessionManager.currentSession();
-
+        Session session = getCurrentSession();
         Criteria criteria = session.createCriteria(Abonement.class);
         criteria.add(Restrictions.eq("email", email));
-
         if (criteria.uniqueResult() != null) {
             return true;
         }
+
         return false;
     }
 
 
     @Override
-    public List<User> takeUserInformation(int page,int interval) throws DAOException {
-        Session session = HibernateSessionManager.currentSession();
-
-
+    public List<User> takeUserInformation(int page, int interval) throws DAOException {
+        Session session = getCurrentSession();
         Criteria criteria = session.createCriteria(getPersistentClass());
         criteria.setFirstResult(page * interval);
         criteria.setMaxResults(interval);
-
         List<User> userList = criteria.list();
-
         return userList;
 
     }
-    public int countAllUsers() throws DAOException{
-        Session session=HibernateSessionManager.currentSession();
-        Criteria criteria=session.createCriteria(getPersistentClass());
-        List<User> userList=criteria.list();
-        int countAllUsers=userList.size();
+
+    public int countAllUsers() throws DAOException {
+
+        Session session = getCurrentSession();
+        Criteria criteria = session.createCriteria(getPersistentClass());
+        List<User> userList = criteria.list();
+        int countAllUsers = userList.size();
         return countAllUsers;
+
     }
 
     @Override

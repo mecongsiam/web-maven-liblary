@@ -4,9 +4,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 
-import by.htp.liblary.dao.HibernateSessionManager;
-
-
 /**
  * Application Lifecycle Listener implementation class DAOListener
  */
@@ -26,7 +23,7 @@ public class DAOListener implements ServletContextListener {
      */
     public void contextDestroyed(ServletContextEvent arg0) {
 
-        HibernateSessionManager.shutdown();
+
         // TODO Auto-generated method stub
     }
 
@@ -34,7 +31,8 @@ public class DAOListener implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0) {
-        HibernateSessionManager.getSessionFactory().openSession();
+
+
         // TODO Auto-generated method stub
 
     }

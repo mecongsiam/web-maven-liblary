@@ -8,7 +8,9 @@ import by.htp.liblary.dao.exception.DAOException;
 import by.htp.liblary.entity.Book;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class DBBookOperationDAO extends OperationDAO implements BookOperationDAO {
     @Override
     public Class getPersistentClass() {
@@ -17,11 +19,10 @@ public class DBBookOperationDAO extends OperationDAO implements BookOperationDAO
 
     @Override
     public List<Book> takeBookInformation() throws DAOException {
-        Session session = HibernateSessionManager.currentSession();
 
+        Session session = getCurrentSession();
         Query query = session.createQuery("from Book");
         List<Book> bookList = (List<Book>) query.list();
-
         return bookList;
 
     }
