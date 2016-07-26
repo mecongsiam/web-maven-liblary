@@ -1,0 +1,14 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          version="2.0">
+
+    <fmt:setLocale value="${sessionScope.local }" />
+    <fmt:setBundle basename="localization.local" var="loc" />
+
+    <!--<header class="clearfix">
+        <div class="headerClass">
+            LIBRARY
+        </div>
+    </header>-->
+ </jsp:root>
