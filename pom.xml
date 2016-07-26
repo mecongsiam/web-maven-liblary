@@ -15,15 +15,11 @@
   </properties>
 <dependencyManagement>
   <dependencies>
-
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.11</version>
       </dependency>
-
-
-
   </dependencies>
 </dependencyManagement>
   <modules>
@@ -31,7 +27,6 @@
     <module>dao</module>
     <module>service</module>
     <module>web</module>
-
   </modules>
   <build>
     <plugins>
@@ -55,8 +50,6 @@
           <outputDirectory>${project.build.directory}/surefire-reports/cobertura</outputDirectory>
           <instrumentation>
             <ignoreTrivial>true</ignoreTrivial>
-
-
           </instrumentation>
         </configuration>
         <executions>
@@ -71,5 +64,4 @@
     </plugins>
     <finalName>liblary</finalName>
   </build>
-
 </project>

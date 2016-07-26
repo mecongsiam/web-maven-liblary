@@ -20,7 +20,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -74,9 +73,6 @@
       <artifactId>spring-core</artifactId>
       <version>4.3.0.RELEASE</version>
     </dependency>
-
-
-
   </dependencies>
   <build>
     <plugins>
