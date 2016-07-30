@@ -19,4 +19,8 @@ public class CustomUser extends org.springframework.security.core.userdetails.Us
     public CustomUser(User user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(user.getLogin(), user.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole()));
     }
+
+    public String getUserLogin(){return user.getLogin();}
+
+    public String getUserRole(){return user.getRole();}
 }

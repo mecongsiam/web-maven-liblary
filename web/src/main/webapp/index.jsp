@@ -91,8 +91,8 @@
 
 	<br>
 
-	<s:url value="/check" var="loginUrl" />
-	<sf:form action="${loginUrl}" role="form" method="post">
+	<s:url value="/login" var="loginUrl" />
+	<form name="loginForm" action="${loginUrl}" role="form" method="post">
 
 		<input type="hidden" name="command" value="login" /><c:out value="${message_login }"/> : <br /> <input
 			type="text" name="login" value=""class="input-group-lg" placeholder="enter login" /> <br /><c:out value="${message_password }"/> :<br /> <input
@@ -100,7 +100,7 @@
 			<input type="submit" value="${log_button }"  class="btn btn-default"  />
 
 
-	</sf:form>
+	</form>
 </center>
 	<br>
 <center>

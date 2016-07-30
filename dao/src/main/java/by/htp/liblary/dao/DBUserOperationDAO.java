@@ -100,6 +100,16 @@ public class DBUserOperationDAO extends OperationDAO implements UserOperationDAO
     }
 
     @Override
+    public User readByLogin(String login) {
+        User user;
+        Session session=getCurrentSession();
+        Criteria criteria=session.createCriteria(getPersistentClass());
+        criteria.add(Restrictions.eq("login",login));
+        user=(User)criteria.uniqueResult();
+        return user;
+    }
+
+    @Override
     public Class getPersistentClass() {
         return User.class;
     }

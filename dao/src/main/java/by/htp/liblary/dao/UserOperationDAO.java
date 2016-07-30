@@ -20,6 +20,7 @@ public interface UserOperationDAO<T> {
 
     T delete(T t);
 
+
     boolean register(String login, String password, String name, String email, String address, String phone,
                      String role, String surname) throws DAOException;
 
@@ -30,6 +31,8 @@ public interface UserOperationDAO<T> {
     List<User> takeUserInformation(int page, int interval) throws DAOException;
 
     int countAllUsers() throws DAOException;
+
+    User readByLogin(String login);
 
 
 }

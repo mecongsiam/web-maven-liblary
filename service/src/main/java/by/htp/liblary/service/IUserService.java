@@ -27,4 +27,5 @@ public interface IUserService<T> {
     int countAllUsers() throws ServiceException;
     boolean regEmailDualityValidatoe(String email) throws ServiceException;
     boolean reqLoginDualityValidator(String login) throws ServiceException;
+    User getUserByLogin(String login);
 }

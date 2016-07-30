@@ -201,6 +201,13 @@ public class UserService<T> implements IUserService {
         return true;
     }
 
+    @Override
+    public User getUserByLogin(String login) {
+        User user;
+        user=dbUserOperationDAO.readByLogin(login);
+        return user;
+    }
+
     public  boolean regEmailDualityValidatoe(String email) throws ServiceException {
         boolean result;
 
